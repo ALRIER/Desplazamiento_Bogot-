@@ -1,0 +1,26 @@
+#este código corresponde al desarrollo de pandas profiling para la comprensión y análisis de la data. 
+
+# -- coding: utf-8 --
+"""
+Created on Sun May  2 15:52:12 2021
+
+@author: lenovo
+"""
+import numpy as np
+import pandas as pd
+from pandas_profiling import ProfileReport
+import os
+
+
+#df = pd.read_csv("C:/Users/lenovo/Documents/Konrad/Analitica de datos/Gestion estrategica de proyectos/DatosCovid/ArchivoPrincipalDesplazamiento/desplazamientoLimpio.csv")  
+
+
+datos=pd.ExcelFile('C:/Users/lenovo/Documents/Konrad/Analitica de datos/Gestion estrategica de proyectos/DatosCovid/ArchivoPrincipalDesplazamiento/desplazamientoLimpio.xlsx')
+print("Leido")
+
+df=datos.parse('desplazamientoLimpio')
+df.info()
+
+profile = df.profile_report()
+profile = df.profile_report(title='Reporte')
+profile.to_file(output_file="C:/Users/lenovo/Documents/Konrad/Analitica de datos/Gestion estrategica de proyectos/DatosCovid/ArchivoPrincipalDesplazamiento/outputDesplazamientoLimpio.html")
