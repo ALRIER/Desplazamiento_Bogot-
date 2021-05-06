@@ -1,0 +1,51 @@
+import pandas as pd
+import numpy as np
+import pandas_profiling
+
+
+data=pd.read_csv("C:/Users/Mauricio A Tellez/Documents/Proyecto U desplazamiento/Desplazamiento_Original.csv", error_bad_lines=False)
+data.head()
+
+
+df = pd.DataFrame(data)
+df.dtypesdf['CONSPERSONA'] = df['CONSPERSONA'].astype('object')
+df['CODDANEMUNICIPIO'] = df['CODDANEMUNICIPIO'].astype('object')
+df['CODDANEMUNICIPIOOCURRENCIA'] = df['CODDANEMUNICIPIOOCURRENCIA'].astype('object')
+df['CODDANELLEGADA'] = df['CODDANELLEGADA'].astype('object')
+df['PRESUNTOVICTIMIZANTE'] = df['PRESUNTOVICTIMIZANTE'].astype('object')
+df['IDSINIESTRO'] = df['IDSINIESTRO'].astype('object')
+df['DISCAPACIDAD'] = df['DISCAPACIDAD'].astype('object')
+
+df['CONSPERSONA'] = df['CONSPERSONA'].astype('object')
+df['CODDANEMUNICIPIO'] = df['CODDANEMUNICIPIO'].astype('object')
+df['CODDANEMUNICIPIOOCURRENCIA'] = df['CODDANEMUNICIPIOOCURRENCIA'].astype('object')
+df['CODDANELLEGADA'] = df['CODDANELLEGADA'].astype('object')
+df['PRESUNTOVICTIMIZANTE'] = df['PRESUNTOVICTIMIZANTE'].astype('object')
+df['IDSINIESTRO'] = df['IDSINIESTRO'].astype('object')
+df['DISCAPACIDAD'] = df['DISCAPACIDAD'].astype('object')
+
+
+df['FECHAOCURRENCIA']  = pd.to_datetime(df['FECHAOCURRENCIA'], errors = 'coerce')
+df['FECHAVALORACION']  = pd.to_datetime(df['FECHAVALORACION'], errors = 'coerce')
+df['FEcharEPORTE']  = pd.to_datetime(df['FEcharEPORTE'], errors = 'coerce')
+df['FECHANACIMIENTO']  = pd.to_datetime(df['FECHANACIMIENTO'], errors = 'coerce')
+
+df[df.duplicated()]
+
+
+df.drop_duplicates()
+
+
+df.isna().sum()
+
+
+df[df['FECHANACIMIENTO'].isna()]
+df[df['NOMDEPARTAMENTO'].isna()]
+df[df['NOMMUNICIPIO'].isna()]
+df[df['PRESUNTOACTOR'].isna()]
+df[df['PRESUNTOVICTIMIZANTE'].isna()]
+df[df['FEcharEPORTE'].isna()]
+df[df['RELACION'].isna()]
+
+
+df.to_csv('desplazamientoLimpio.csv', index=False)
